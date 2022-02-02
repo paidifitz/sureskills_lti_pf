@@ -15,7 +15,7 @@
       %tr
         %td= platform_key.name
         %td= platform_key.deployment_id
-        %td= platform_key.platform
+        %td= platform_key.platform.name
         %td= link_to 'Show', platform_platform_key_path(@platform, platform_key)
         %td= link_to 'Edit', edit_platform_platform_key_path(@platform, platform_key)
         %td= link_to 'Destroy', platform_platform_key_path(@platform, platform_key), method: :delete, data: { confirm: 'Are you sure?' }
@@ -23,3 +23,4 @@
 %br
 
 = link_to 'New Platform key', new_platform_platform_key_path(@platform.id)
+= link_to 'Back to Platform', platform_path(@platform)

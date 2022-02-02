@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_100327) do
+ActiveRecord::Schema.define(version: 2022_02_02_114857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contexts", force: :cascade do |t|
+    t.string "label"
+    t.string "title"
+    t.string "context_type"
+    t.bigint "platform_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["platform_id"], name: "index_contexts_on_platform_id"
+  end
 
   create_table "platform_keys", force: :cascade do |t|
     t.string "name"
@@ -36,5 +46,22 @@ ActiveRecord::Schema.define(version: 2022_02_02_100327) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "resource_links", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "tool_link_url"
+    t.string "login_url"
+    t.string "role"
+    t.bigint "platform_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "context_id"
+    t.index ["context_id"], name: "index_resource_links_on_context_id"
+    t.index ["platform_id"], name: "index_resource_links_on_platform_id"
+  end
+
+  add_foreign_key "contexts", "platforms"
   add_foreign_key "platform_keys", "platforms"
+  add_foreign_key "resource_links", "contexts"
+  add_foreign_key "resource_links", "platforms"
 end

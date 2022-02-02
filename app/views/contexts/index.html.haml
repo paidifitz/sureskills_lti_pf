@@ -1,0 +1,28 @@
+%h1 Listing contexts
+
+%table
+  %thead
+    %tr
+      %th Label
+      %th Title
+      %th Type
+      %th Platform
+      %th
+      %th
+      %th
+
+  %tbody
+    - @contexts.each do |context|
+      %tr
+        %td= context.label
+        %td= context.title
+        %td= context.context_type
+        %td= link_to context.platform.name, platform_path(@platform)
+        %td= link_to 'Show', platform_context_path(@platform, context)
+        %td= link_to 'Edit', edit_platform_context_path(@platform, context)
+        %td= link_to 'Destroy', platform_context_path(@platform, context), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Context', new_platform_context_path(@platform)
+= link_to 'Back to Platform', platform_path(@platform)

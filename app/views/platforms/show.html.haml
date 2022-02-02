@@ -35,4 +35,12 @@
 
   %p
     %strong Platform Keys:
-    = link_to 'Platform Keys', platform_platform_keys_path(@platform.id)
+    = link_to 'Platform Keys', platform_platform_keys_path(@platform)
+
+  %p
+    %strong Courses:
+    = link_to 'Courses', platform_contexts_path(@platform)
+
+  %p
+    %strong Resource Links:
+    = link_to 'Resources', platform_resource_links_path(@platform)

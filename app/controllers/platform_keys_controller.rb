@@ -39,7 +39,7 @@ class PlatformKeysController < ApplicationController
   def update
     respond_to do |format|
       if @platform_key.update(platform_key_params)
-        format.html { redirect_to platform_key_url(@platform_key), notice: "Platform key was successfully updated." }
+        format.html { redirect_to platform_platform_key_url(@platform, @platform_key), notice: "Platform key was successfully updated." }
         format.json { render :show, status: :ok, location: @platform_key }
       else
         format.html { render :edit, status: :unprocessable_entity }

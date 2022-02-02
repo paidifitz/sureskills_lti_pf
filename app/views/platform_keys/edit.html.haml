@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @platform_key
+= link_to 'Show', platform_platform_key_path(@platform, @platform_key)
 \|
-= link_to 'Back', platform_keys_path
+= link_to 'Back', platform_platform_keys_path(@platform)

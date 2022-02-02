@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @resource_link.title
+%p
+  %b Description:
+  = @resource_link.description
+%p
+  %b Tool link url:
+  = @resource_link.tool_link_url
+%p
+  %b Login url:
+  = @resource_link.login_url
+%p
+  %b Role:
+  = @resource_link.role
+%p
+  %b Platform:
+  = link_to @resource_link.platform.name, platform_path(@platform)
+
+= link_to 'Edit', edit_platform_resource_link_path(@platform, @resource_link)
+\|
+= link_to 'Back', platform_resource_links_path(@platform)

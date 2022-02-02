@@ -1,0 +1,34 @@
+%h1 Listing resource_links
+
+%table
+  %thead
+    %tr
+      %th Context
+      %th Title
+      %th Description
+      %th Tool link url
+      %th Login url
+      %th Role
+      %th Platform
+      %th
+      %th
+      %th
+
+  %tbody
+    - @resource_links.each do |resource_link|
+      %tr
+        %td= link_to resource_link.context.label, platform_context_path(@platform, resource_link.context)
+        %td= resource_link.title
+        %td= resource_link.description
+        %td= resource_link.tool_link_url
+        %td= resource_link.login_url
+        %td= resource_link.role
+        %td= link_to resource_link.platform.name, platform_path(@platform)
+        %td= link_to 'Show', platform_resource_link_path(@platform, resource_link)
+        %td= link_to 'Edit', edit_platform_resource_link_path(@platform, resource_link)
+        %td= link_to 'Destroy', platform_resource_link_path(@platform, resource_link), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Resource link', new_platform_resource_link_path(@platform)
+= link_to 'Back to Platform', platform_path(@platform)

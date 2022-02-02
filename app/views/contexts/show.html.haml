@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Label:
+  = @context.label
+%p
+  %b Title:
+  = @context.title
+%p
+  %b Type:
+  = @context.context_type
+%p
+  %b Platform:
+  = link_to @context.platform.name, platform_path(@platform)
+
+= link_to 'Edit', edit_platform_context_path(@platform, @context)
+\|
+= link_to 'Back', platform_contexts_path(@platform)

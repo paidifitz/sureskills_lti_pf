@@ -1,0 +1,23 @@
+.m-4
+  %ol.breadcrumb.mt-3.breadcrumb-background
+    %li.breadcrumb-item= link_to 'HOME', root_path
+
+.m-4
+  .pb-2.mb-3.border-bottom
+    %h3 Platforms
+  .mb-3
+    = link_to 'New Platform', new_platform_path, class: 'btn btn-primary add_button'
+
+  - if @platforms.any?
+    %table.table.table-bordered
+      %thead
+        %th #
+        %th Name
+        %th Client
+        %th Audience
+        %th Actions
+      %tbody
+        = render partial: 'platform', collection: @platforms, as: :platform
+  - else
+    .pb-2.mt-4.border-top
+      %h5.mt-4.font-italic No platforms have been added yet.

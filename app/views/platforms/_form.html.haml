@@ -1,0 +1,10 @@
+= simple_form_for [platform] do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :client
+  = f.input :audience
+  = f.input :public_key
+  = f.input :private_key
+  = f.input :tool_public_key
+  = f.input :jwt_url
+  = f.submit 'Save', class: 'btn btn-primary'

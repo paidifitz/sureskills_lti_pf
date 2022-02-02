@@ -1,0 +1,9 @@
+.m-4
+  %ol.breadcrumb.mt-3.breadcrumb-background
+    %li.breadcrumb-item= link_to 'Platforms', platforms_path
+    %li.breadcrumb-item.active Create a Platform
+
+  .pb-2.mt-4.mb-5.border-bottom
+    %h3 New Platform
+
+  = render 'form', platform: @platform

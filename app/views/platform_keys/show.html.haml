@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @platform_key.name
+%p
+  %b Deployment:
+  = @platform_key.deployment_id
+%p
+  %b Platform:
+  = @platform_key.platform.name
+
+= link_to 'Edit', edit_platform_platform_key_path(@platform, @platform_key)
+\|
+= link_to 'Back', platform_platform_keys_path(@platform)

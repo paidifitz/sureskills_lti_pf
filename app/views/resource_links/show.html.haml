@@ -1,3 +1,5 @@
+%h2 Resource Link Detail
+
 %p#notice= notice
 
 %p
@@ -19,6 +21,56 @@
   %b Platform:
   = link_to @resource_link.platform.name, platform_path(@platform)
 
-= link_to 'Edit', edit_platform_resource_link_path(@platform, @resource_link)
-\|
-= link_to 'Back', platform_resource_links_path(@platform)
+%p
+  %b Launch:
+  = link_to 'Select User for Launch', platform_resource_link_rosters_path(@platform, @resource_link)
+
+%h2 Perform Launch
+
+- if params[:nonce].present?
+  %h3 Tool Detail
+  %p
+    %b Nonce
+    = params[:nonce]
+  
+  %p{ style: 'max-width: 90%; height:200px; white-space: pre-wrap; text-overflow: ellipsis; word-wrap: break-word;' }
+    %b JWT
+    = params[:tool_state]
+
+  %b Tool Params
+  - @tool_params.each do |tool_param|
+    %p= tool_param
+
+  %h2 Platform Detail
+
+  %h3 JWT attributes in request:
+  %p 
+    =@claims_hash
+    =@json_claims
+  {
+  - @claims_hash.each do |key, value|
+    %p
+      =key
+      \:
+      =value
+  }
+
+  %h3 JWT that will be sent:
+
+  %p{ style: 'max-width: 90%; height:250px; white-space: pre-wrap; text-overflow: ellipsis; word-wrap: break-word;' }
+    = @jwt
+
+  %h3 Final Launch
+  = form_with(url: @resource_link.tool_link_url, method: :post) do |form|
+    = form.hidden_field :utf8, value: '✓'
+    = form.hidden_field :id_token, id: 'id_token', value: @jwt
+    = form.hidden_field :state, id: 'state', value: params[:tool_state]
+    
+    .form-actions
+      = form.submit 'Perform Launch'
+
+
+%p
+  = link_to 'Edit', edit_platform_resource_link_path(@platform, @resource_link)
+  \|
+  = link_to 'Back', platform_resource_links_path(@platform)

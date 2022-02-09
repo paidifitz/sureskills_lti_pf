@@ -9,6 +9,15 @@ class ResourceLinksController < ApplicationController
 
   # GET /resource_links/1 or /resource_links/1.json
   def show
+    if params[:nonce].present?
+      @tool_params = Jwt.get_jwt_details(params[:tool_state])
+      @claims_hash = Jwt.create_claims_hash(@tool_params, @resource_link.id, @platform.id)
+      # puts('__________')
+      @json_claims = Jwt.json_claims(@claims_hash)
+      # puts('__________')
+      @jwt = Jwt.create_jwt(@json_claims, @platform.id)
+
+    end
   end
 
   # GET /resource_links/new

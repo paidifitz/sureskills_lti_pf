@@ -1,0 +1,13 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @student.name
+
+%p
+  %b Course:
+  = link_to @student.context.resource_links.first.title, platform_resource_link_path(@student.context.platform, @student.context.resource_links.first)
+
+= link_to 'Edit', edit_student_path(@student)
+\|
+= link_to 'Back', students_path

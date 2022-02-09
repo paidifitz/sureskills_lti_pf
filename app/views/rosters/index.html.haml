@@ -1,0 +1,10 @@
+%h1 Rosters
+
+- @students.each do |student|
+  %p
+    %b Name:
+    = student.name
+
+  %p
+    %b Launch Resource Link (OIDC):
+    = link_to 'Launch Resource Link (OIDC)', platform_resource_link_connects_path(@platform, @resource_link, params[user: student.id])

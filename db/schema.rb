@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_114857) do
+ActiveRecord::Schema.define(version: 2022_02_07_152510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,8 +60,17 @@ ActiveRecord::Schema.define(version: 2022_02_02_114857) do
     t.index ["platform_id"], name: "index_resource_links_on_platform_id"
   end
 
+  create_table "students", force: :cascade do |t|
+    t.string "name"
+    t.bigint "context_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["context_id"], name: "index_students_on_context_id"
+  end
+
   add_foreign_key "contexts", "platforms"
   add_foreign_key "platform_keys", "platforms"
   add_foreign_key "resource_links", "contexts"
   add_foreign_key "resource_links", "platforms"
+  add_foreign_key "students", "contexts"
 end

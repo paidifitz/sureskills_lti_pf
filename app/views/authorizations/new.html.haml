@@ -1,0 +1,13 @@
+%h1 New Authorizations
+
+- if @params.keys.length > 0
+  - @params.each do |key, value|
+    %p
+      =key
+      =value
+
+%h3
+  = link_to 'Launch Resource Link', platform_resource_link_path(@platform, 1, {nonce: @params[:nonce], redirect_uri: @params[:redirect_uri], tool_state: @params[:state], user_id: @params[:login_hint]})
+
+%p 
+  nonce=#{@params[:nonce]}&redirect_uri=#{@params[:redirect_uri]}&tool_state=#{@params[:state]}&user_id=#{@params[:login_hint]}

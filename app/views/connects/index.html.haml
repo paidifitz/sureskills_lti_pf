@@ -1,0 +1,27 @@
+%h1 
+  Initiating Login from Tool for 
+  = @resource_link.title
+
+
+%p GET: query parameters being generated:
+%ul 
+  %li iss: http://localhost:3000/
+  %li 
+    login_hint: 
+    = @resource_link.context.students.first.id
+  %li target_link_uri: https://lti-ri.imsglobal.org/lti/tools/2664/launches
+  %li
+    lti_message_hint: 
+    = @resource_link.id
+  %li 
+    lti_deployment_id: 
+    = @platform.platform_keys.first.deployment_id
+  %li 
+    client_id: 
+    = @platform.client
+
+%a{ href: "https://lti-ri.imsglobal.org/lti/tools/2664/login_initiations?iss=http://localhost:3000/&login_hint=1&target_link_uri=https://lti-ri.imsglobal.org/lti/tools/2664/launches&lti_message_hint=1&lti_deployment_id=SS_1&client_id=12345", title: "Send Request" }
+  %p 
+    Send Request:
+    https://lti-ri.imsglobal.org/lti/tools/2664/login_initiations?iss=http://localhost:3000/&login_hint=1&target_link_uri=https://lti-ri.imsglobal.org/lti/tools/2664/launches&lti_message_hint=1&lti_deployment_id=SS_1&client_id=12345
+
